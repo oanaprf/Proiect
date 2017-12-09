@@ -1,0 +1,24 @@
+{
+  "name": "locuri_de_interes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oanaprf/Proiect.git"
+  },
+  "author": "Profir Oana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oanaprf/Proiect/issues"
+  },
+  "homepage": "https://github.com/oanaprf/Proiect#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "sequelize": "^4.27.0"
+  }
+}
