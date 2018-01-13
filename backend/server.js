@@ -15,10 +15,16 @@ sequelize.authenticate().then(function(){
 })
 
 var app = express()
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.json())
+app.use(express.urlencoded())
+app.use(function(req,res,next){
+    res.header("Access-Control-Allow-Origin","*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    res.header("Access-Control-Allow-Methods","POST, GET, OPTIONS, PUT, DELETE")
+    next()
+})
 
-app.use(express.static('public'))
+app.use(express.static('../frontend/build'))
 
 var Tari = sequelize.define('tara',{
     nume: Sequelize.STRING,
@@ -51,6 +57,16 @@ app.get('/tari',function(req,res){
 
 app.get('/tari/:id',function(req,res){
     Tari.findOne({where: {id:req.params.id}}).then(function(tara){
+        if(tara){
+            res.status(200).send(tara)
+        }else{
+            res.status(404).send(tara_not_found)
+        }
+    })
+})
+
+app.get('/tari2/:nume',function(req,res){
+    Tari.findOne({where: {nume:req.params.nume}}).then(function(tara){
         if(tara){
             res.status(200).send(tara)
         }else{
@@ -100,6 +116,16 @@ app.get('/categorii',function(req, res) {
 
 app.get('/categorii/:id',function(req, res) {
     Categorii.findOne({where: {id:req.params.id}}).then(function(categorie){
+        if(categorie){
+            res.status(200).send(categorie)
+        }else{
+            res.status(404).send(categorie_not_found)
+        }
+    })
+})
+
+app.get('/categorii2/:nume',function(req, res) {
+    Categorii.findOne({where: {nume:req.params.nume}}).then(function(categorie){
         if(categorie){
             res.status(200).send(categorie)
         }else{
