@@ -12,9 +12,9 @@ class ApiStore{
             url: SERVER,
             headers :{"X-Mashape-Key": "mC507XFFsVmsh3WEEyrhIsQb5F08p1KwfjxjsnThz4VLBmNyVi"}
         }).then((res) =>{
-            this.content = res.data
+            this.content = res.body
             this.emitter.emit('API_WEBCAM_LOAD')
-        })
+        }).catch((error) => console.warn(error))
     }
 }
 

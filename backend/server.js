@@ -228,6 +228,16 @@ app.get('/categorii/:id/webcams', function(req, res) {
     })
 })
 
+var unirest = require('unirest');
+
+app.get('/api', function(req, res) {
+    unirest.get("https://webcamstravel.p.mashape.com/webcams/list?show=webcams:title,url,location")
+        .header("X-Mashape-Key", "mC507XFFsVmsh3WEEyrhIsQb5F08p1KwfjxjsnThz4VLBmNyVi")
+        .end(function (result) {
+            res.status(result.status).send(result.body.result.webcams)
+    });
+})
+
 
 
 app.listen(8080)

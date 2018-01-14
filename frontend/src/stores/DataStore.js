@@ -6,6 +6,14 @@ class DataStore{
         this.emitter = ee;
         this.content = [];
     }
+    
+    getApiWebcams(){
+        axios(SERVER + '/api').then((res) =>{
+            this.content = res.data
+            this.emitter.emit('API_WEBCAMS_LOAD')
+        })
+    }
+    
     getCategories(){
         axios(SERVER + '/categorii').then((res) =>{
             this.content = res.data
